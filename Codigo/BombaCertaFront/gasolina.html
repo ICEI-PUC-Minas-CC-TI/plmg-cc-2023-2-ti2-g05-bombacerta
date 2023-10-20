@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gasolina</title>
+  <style>
+    .posto-card {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      padding: 10px;
+      background-color: #f1f1f1;
+      border-radius: 5px;
+      width: 90%;
+    }
+
+    .posto-card img {
+      width: 200px;
+      margin-right: 10px;
+    }
+
+    .posto-card .posto-nome {
+      font-weight: bold;
+      
+    }
+
+    .posto-card .posto-endereco {
+      margin-top: 5px;
+    }
+
+    .posto-card .posto-preco {
+      margin-left: auto;
+      font-weight: bold;
+      background-color: #eaeaea;
+    padding: 5px 10px;
+    
+    }
+    .posto-card .atualizar-preco-btn {
+    margin-top: 3px;
+    margin-left: 100px; /* Adiciona essa linha para alinhar à esquerda */
+    }
+
+     /* Media queries para ajustar o layout em diferentes tamanhos de tela */
+  @media (max-width: 768px) {
+    .posto-card {
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+    }
+
+    .posto-card img {
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+
+    .posto-card .atualizar-preco-btn {
+      margin-left: 0;
+    }
+  }
+
+    
+  </style>
+</head>
+<body>
+  <h1>Preço da Gasolina</h1>
+
+  <div class="posto-lista">
+    <div class="posto-card">
+      <img src="img/petrobras.png" alt="Posto 1">
+      <div>
+        <span class="posto-nome">Posto King</span><br>
+        <span class="posto-endereco">Av. Presidente Juscelino Kubitscheck, 523</span>
+      </div>
+      <span class="posto-preco" id="preco1">R$ 4,95</span>
+      <br>
+      <div class="atualizar-preco-btn">
+      <button onclick="exibirCampoPreco('preco1')">Atualizar Preço</button>
+    </div>
+    </div>
+  
+    <div class="posto-card">
+      <img src="img/shell.png" alt="Posto 2">
+      <div>
+        <span class="posto-nome">Posto Zeppelin</span><br>
+        <span class="posto-endereco">Av. Presidente Juscelino Kubitscheck, 2056</span>
+      </div>
+      <span class="posto-preco" id="preco2">R$ 4,98</span>
+      <br>
+      <div class="atualizar-preco-btn">
+      <button onclick="exibirCampoPreco('preco2')">Atualizar Preço</button>
+    </div>
+    </div>
+  
+    <div class="posto-card">
+      <img src="img/shell.png" alt="Posto 3">
+      <div>
+        <span class="posto-nome">Posto Shell</span><br>
+        <span class="posto-endereco">Av. Presidente Juscelino Kubitscheck, 369</span>
+      </div>
+      <span class="posto-preco" id="preco3">R$ 5,05</span>
+      <br>
+      <div class="atualizar-preco-btn">
+      <button onclick="exibirCampoPreco('preco3')">Atualizar Preço</button>
+      </div>
+    </div>
+  
+    <div class="posto-card">
+      <img src="img/petrobras.png" alt="Posto 4">
+      <div>
+        <span class="posto-nome">Posto Petrobras</span><br>
+        <span class="posto-endereco">Av. Presidente Juscelino Kubitscheck, 23</span>
+      </div>
+      <span class="posto-preco" id="preco2">R$ 5,10</span>
+      <br>
+      <div class="atualizar-preco-btn">
+      <button onclick="exibirCampoPreco('preco2')">Atualizar Preço</button>
+    </div>
+    </div>
+  
+    <div class="posto-card">
+      <img src="img/shell.png" alt="Posto 3">
+      <div>
+        <span class="posto-nome">Posto Beija Flor</span><br>
+        <span class="posto-endereco">Av. Presidente Juscelino Kubitscheck, 1025</span>
+      </div>
+      <span class="posto-preco" id="preco3">R$ 5,15</span>
+      <br>
+      <div class="atualizar-preco-btn">
+      <button onclick="exibirCampoPreco('preco3')">Atualizar Preço</button>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    function exibirCampoPreco(idPreco) {
+      var botao = event.target; // Obtém o botão clicado
+      botao.style.display = "none"; // Esconde o botão
+  
+      var novoPrecoInput = document.createElement("input");
+      novoPrecoInput.type = "text";
+      novoPrecoInput.id = "novo-preco-" + idPreco; // Cria um id único para o campo de entrada
+      novoPrecoInput.placeholder = "Novo Preço";
+  
+      var atualizarPrecoBtn = document.createElement("button");
+      atualizarPrecoBtn.textContent = "Atualizar";
+      atualizarPrecoBtn.onclick = function() {
+        atualizarPreco(idPreco);
+      };
+  
+      var divCard = botao.parentNode;
+      divCard.appendChild(novoPrecoInput);
+      divCard.appendChild(atualizarPrecoBtn);
+    }
+  
+    function atualizarPreco(idPreco) {
+      var novoPreco = document.getElementById("novo-preco-" + idPreco).value;
+      document.getElementById(idPreco).textContent = novoPreco;
+  
+      var novoPrecoInput = document.getElementById("novo-preco-" + idPreco);
+      var atualizarPrecoBtn = novoPrecoInput.nextSibling; // Obtém o próximo irmão do campo de entrada
+  
+      novoPrecoInput.parentNode.removeChild(novoPrecoInput);
+      atualizarPrecoBtn.parentNode.removeChild(atualizarPrecoBtn);
+    }
+  </script>
+  
+  
+</body>
+</html>
