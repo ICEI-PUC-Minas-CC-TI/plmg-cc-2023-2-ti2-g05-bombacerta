@@ -10,8 +10,17 @@ public class Abastecimento {
     private int id_usuario;
     private BigDecimal preco;
     private String litros;
-    private String tipo;
+    private Tipo tipo;
     private LocalDate data; 
+
+    public Abastecimento(int id_posto, int id_usuario, BigDecimal preco, String litros, Tipo tipo, LocalDate data) {
+        this.id_posto = id_posto;
+        this.id_usuario = id_usuario;
+        this.preco = preco;
+        this.litros = litros;
+        this.tipo = tipo;
+        this.data = data;
+    }
 
     public int getId() {
         return id;
@@ -53,12 +62,16 @@ public class Abastecimento {
         this.litros = litros;
     }
 
-    public String getTipo() {
+    public Tipo getTipo() {
         return tipo;
     }
 
     public void setTipo(String tipo) {
-        this.tipo = tipo;
+        if(tipo.equals("gasolina")){
+            this.tipo = Tipo.GASOLINA;
+        } else {
+            this.tipo = Tipo.ALCOOL;
+        }
     }
 
     public LocalDate getData() {

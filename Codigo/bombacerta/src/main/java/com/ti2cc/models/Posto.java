@@ -5,29 +5,36 @@ import java.math.BigDecimal;
 public class Posto {
 
     private String CPNJ;
-    private String posto;
     private String nome;
     private String marca;
-    private double latitude; 
+    private double latitude;
     private double longitude;
     private BigDecimal Preco_gasolina;
     private BigDecimal Preco_alcool;
 
+    public Posto(String cPNJ, String nome, String marca, double latitude, double longitude,
+            BigDecimal preco_gasolina, BigDecimal preco_alcool) {
+        CPNJ = cPNJ;
+        this.nome = nome;
+        this.marca = marca;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        Preco_gasolina = preco_gasolina;
+        Preco_alcool = preco_alcool;
+    }
 
     public String getCPNJ() {
         return CPNJ;
     }
 
+    @Override
+    public String toString() {
+        return "Posto [CPNJ=" + CPNJ + ", nome=" + nome + ", marca=" + marca + ", latitude=" + latitude + ", longitude="
+                + longitude + ", Preco_gasolina=" + Preco_gasolina + ", Preco_alcool=" + Preco_alcool + "]";
+    }
+
     public void setCPNJ(String CPNJ) {
         this.CPNJ = CPNJ;
-    }
-
-    public String getPosto() {
-        return posto;
-    }
-
-    public void setPosto(String posto) {
-        this.posto = posto;
     }
 
     public String getNome() {
