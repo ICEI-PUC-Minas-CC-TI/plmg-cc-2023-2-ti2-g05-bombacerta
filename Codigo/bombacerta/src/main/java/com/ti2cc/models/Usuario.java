@@ -18,6 +18,12 @@ public class Usuario {
         return "Usuario [id=" + id + ", nome=" + nome + ", email=" + email + "]";
     }
 
+    public Usuario(String nome, String senha, String email) {
+        this.nome = nome;
+        this.senha = senha;
+        this.email = email;
+    }
+
     public int getId() {
         return id;
     }

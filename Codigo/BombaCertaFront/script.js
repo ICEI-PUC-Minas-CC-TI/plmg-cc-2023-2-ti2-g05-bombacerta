@@ -369,39 +369,39 @@ loginLink.addEventListener('click', function (event) {
 });
 
 // Adiciona o evento de envio do formulário de login
-loginForm.addEventListener('submit', function (event) {
-  event.preventDefault(); // Previne o comportamento padrão do formulário
+// loginForm.addEventListener('submit', function (event) {
+//   event.preventDefault(); // Previne o comportamento padrão do formulário
 
-  // Valida o login com base nas informações armazenadas
-  const username = usernameInput.value;
-  const password = passwordInput.value;
+//   // Valida o login com base nas informações armazenadas
+//   const username = usernameInput.value;
+//   const password = passwordInput.value;
 
-  const storedAccountData = JSON.parse(localStorage.getItem('accountData'));
-  if (storedAccountData && storedAccountData.username === username && storedAccountData.password === password) {
-      // Redireciona o usuário para a página do usuário
-      window.location.href = 'login.html';
-  } else {
-      alert('Usuário ou senha inválidos. Tente novamente.');
-  }
-});
+//   const storedAccountData = JSON.parse(localStorage.getItem('accountData'));
+//   if (storedAccountData && storedAccountData.username === username && storedAccountData.password === password) {
+//       // Redireciona o usuário para a página do usuário
+//       window.location.href = 'login.html';
+//   } else {
+//       alert('Usuário ou senha inválidos. Tente novamente.');
+//   }
+// });
 
 
 // Adiciona o evento de clique no botão "Criar Conta"
-createAccountButton.addEventListener('click', function (event) {
-    event.preventDefault(); // Previne o comportamento padrão do link
+// createAccountButton.addEventListener('click', function (event) {
+//     event.preventDefault(); // Previne o comportamento padrão do link
     
-    const newUsername = usernameInput.value;
-    const newPassword = passwordInput.value;
+//     const newUsername = usernameInput.value;
+//     const newPassword = passwordInput.value;
     
-    // Armazena as informações da nova conta no LocalStorage
-    const accountData = {
-        username: newUsername,
-        password: newPassword
-    };
-    localStorage.setItem('accountData', JSON.stringify(accountData));
+//     // Armazena as informações da nova conta no LocalStorage
+//     const accountData = {
+//         username: newUsername,
+//         password: newPassword
+//     };
+//     localStorage.setItem('accountData', JSON.stringify(accountData));
     
-    alert('Conta criada com sucesso! Faça login com as informações fornecidas.');
-});
+//     alert('Conta criada com sucesso! Faça login com as informações fornecidas.');
+// });
 
 // Fecha o pop-up de login ao clicar fora dele
 overlay.addEventListener('click', function (event) {

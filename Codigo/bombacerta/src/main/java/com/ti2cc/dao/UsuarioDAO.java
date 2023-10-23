@@ -17,8 +17,8 @@ public class UsuarioDAO extends DAO {
     }
 
     public void finalize() {
-		close();
-	}
+        close();
+    }
 
     // Método para gerar um hash bcrypt
     public static String hashPassword(String password) {
@@ -30,11 +30,21 @@ public class UsuarioDAO extends DAO {
         return BCrypt.checkpw(inputPassword, hashedPassword);
     }
 
-    public boolean insert(Usuario usuario){
+    public boolean insert(Usuario usuario) {
+        // criar random id:
+        while (true) {
+            int id = (int) (Math.random() * 100000);
+            if (getById(id) != null) {
+                usuario.setId(id);
+                break;
+            }
+        }
+
         boolean status = false;
         String hashed = hashPassword(usuario.getSenha());
         try {
-            String sql = "INSERT INTO usuarios(id, nome, email, senha) VALUES(" + usuario.getId() + ", '" + usuario.getNome() + "', '" + usuario.getEmail() + "', '" + hashed + "')";
+            String sql = "INSERT INTO usuarios(id, nome, email, senha) VALUES(" + usuario.getId() + ", '"
+                    + usuario.getNome() + "', '" + usuario.getEmail() + "', '" + hashed + "')";
             PreparedStatement st = conexao.prepareStatement(sql);
             st.executeUpdate();
             st.close();
@@ -45,15 +55,16 @@ public class UsuarioDAO extends DAO {
         return status;
     }
 
-    public Usuario getById(int id){
+    public Usuario getById(int id) {
         Usuario usuario = null;
         try {
-            Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             String sql = "SELECT * FROM usuarios WHERE id = " + id;
-            ResultSet rs = st.executeQuery(sql);	
-            
-            if(rs.next()){
-                usuario = new Usuario(rs.getInt("id"), rs.getString("nome"), rs.getString("senha"), rs.getString("email"));
+            ResultSet rs = st.executeQuery(sql);
+
+            if (rs.next()) {
+                usuario = new Usuario(rs.getInt("id"), rs.getString("nome"), rs.getString("senha"),
+                        rs.getString("email"));
             }
             st.close();
         } catch (SQLException e) {
@@ -62,10 +73,11 @@ public class UsuarioDAO extends DAO {
         return usuario;
     }
 
-    public boolean updateById(int id, String nome, String email, String senha){
+    public boolean updateById(int id, String nome, String email, String senha) {
         boolean status = false;
         try {
-            String sql = "UPDATE usuarios SET nome = '" + nome + "', email = '" + email + "', senha = '" + senha + "' WHERE id = " + id;
+            String sql = "UPDATE usuarios SET nome = '" + nome + "', email = '" + email + "', senha = '" + senha
+                    + "' WHERE id = " + id;
             PreparedStatement st = conexao.prepareStatement(sql);
             st.executeUpdate();
             st.close();
@@ -76,7 +88,7 @@ public class UsuarioDAO extends DAO {
         return status;
     }
 
-    public boolean deleteById(int id){
+    public boolean deleteById(int id) {
         boolean status = false;
         try {
             String sql = "DELETE FROM usuarios WHERE id = " + id;
@@ -89,5 +101,5 @@ public class UsuarioDAO extends DAO {
         }
         return status;
     }
-    
+
 }
