@@ -34,7 +34,7 @@ public class UsuarioDAO extends DAO {
         // criar random id:
         while (true) {
             int id = (int) (Math.random() * 100000);
-            if (getById(id) != null) {
+            if (getById(id) == null) {
                 usuario.setId(id);
                 break;
             }
@@ -53,6 +53,36 @@ public class UsuarioDAO extends DAO {
             throw new RuntimeException(e);
         }
         return status;
+    }
+
+    public int login(String email, String senha){
+        Usuario user = getByEmail(email);
+        int id = -1;
+        if(user == null){
+            return id;
+        } 
+        if(verifyPassword(senha, user.getSenha())){
+            return user.getId();
+        }
+        return id;
+    }
+
+    public Usuario getByEmail(String email){
+        Usuario usuario = null;
+        try {
+            Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            String sql = "SELECT * FROM usuarios WHERE email = '" + email + "'";
+            ResultSet rs = st.executeQuery(sql);
+
+            if (rs.next()) {
+                usuario = new Usuario(rs.getInt("id"), rs.getString("nome"), rs.getString("senha"),
+                        rs.getString("email"));
+            }
+            st.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return usuario;
     }
 
     public Usuario getById(int id) {
