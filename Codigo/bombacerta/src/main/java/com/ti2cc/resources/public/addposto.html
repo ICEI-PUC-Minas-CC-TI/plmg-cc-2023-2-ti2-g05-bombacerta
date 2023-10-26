@@ -1,7 +1,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Página do Usuário</title>
+  <title>Adicionar novo posto</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
@@ -14,24 +14,30 @@
 
 
   <div class="containe">
-  <h1>Cadastro de Abastecimento</h1>
+  <h1>Adicione um novo posto</h1>
 
-  <form id="form-abastecimento">
+  <form id="form-posto">
 
-    <label for="data">Data:</label>
-    <input type="date" id="data" name="data" required><br><br>
+    <label for="nome">CNPJ:</label>
+    <input type="text" id="nome" name="nome" required><br><br>
+    
+    <label for="cnpj">Nome:</label>
+    <input type="text" id="cnpj" name="cnpj" required><br><br>
 
-    <label for="combustivel">Tipo de combustível:</label>
+
+    <label for="combustivel">Marca:</label>
     <select id="combustivel" name="combustivel" required>
-      <option value="">Selecione o combustível</option>
-      <option value="Gasolina" name="gasolina">Gasolina</option>
-      <option value="alcool">Álcool</option>
+      <option value="">Selecione a marca do posto</option>
+      <option value="Petrobras" name="gasolina">Petrobras</option>
+      <option value="Shell">Shell</option>
+      <option value="Ipiranga">Ipiranga</option>
     </select><br><br>
 
-    <label for="valor-unitario">Valor do litro:</label>
+
+    <label for="valor-unitario">Valor da gasolina:</label>
     <input type="number" id="valor-litro" name="valor-litro" step="0.01" min="0.01" required><br><br>
 
-    <label for="quantidade">Valor total gasto:</label>
+    <label for="quantidade">Valor do álcool:</label>
     <input type="number" id="total" name="total" step="0.01" min="0.01" required><br><br>
 
     <button type="submit">Cadastrar</button>
@@ -41,26 +47,7 @@
     
   </form>
 
-  <h2>Abastecimentos cadastrados</h2>
-
-  <table id="tabela-abastecimentos" cellspacing="10" cellpadding="5">
-    <colgroup>
-      <col width="25%">
-      <col width="25%">
-      <col width="25%">
-      <col width="25%">
-    </colgroup>
-    <thead>
-      <tr>
-        <th>Data</th>
-        <th>Combustível</th>
-        <th>Valor do litro</th>
-        <th>Total</th>
-      </tr>
-    </thead>
-    <tbody>
-    </tbody>
-  </table>
+  
   
   <script>
 // // Obtendo referência à tabela
@@ -187,11 +174,7 @@ h1 {
     
   }
   
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-top: 2rem;
-  }
+
   
   th, td {
     padding: 0.5rem;
