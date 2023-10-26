@@ -1,0 +1,237 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Adicionar novo posto</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+
+  </header>
+
+
+  <div class="containe">
+    <h1>Adicione um novo posto</h1>
+
+    <form id="form-posto" action="cadastro" method="post">
+
+      <label for="cnpj">CNPJ:</label>
+      <input type="text" id="cnpj" name="cnpj" required placeholder="Sem pontucação! Exemplo: '11712569000104'"><br><br>
+
+      <label for="cnpj">Nome:</label>
+      <input type="text" id="nome" name="nome" required><br><br>
+
+
+      <label for="marca">Marca:</label>
+      <select id="marca" name="marca" required>
+        <option value="">Selecione a marca do posto</option>
+        <option value="Petrobras" name="gasolina">Petrobras</option>
+        <option value="Shell">Shell</option>
+        <option value="Ipiranga">Ipiranga</option>
+      </select><br><br>
+
+
+      <label for="preco_gasolina">Valor da gasolina:</label>
+      <input type="number" id="preco_gasolina" name="preco_gasolina" step="0.01" min="0.01" required><br><br>
+
+      <label for="preco_alcool">Valor do álcool:</label>
+      <input type="number" id="preco_alcool" name="preco_alcool" step="0.01" min="0.01" required><br><br>
+
+      <label for="endereco">Endereço: (Copie do google maps) </label>
+      <input id="endereco" type="text" name="endereco" required>
+
+
+      <button id="btn-submit" type="submit">Cadastrar</button>
+      <button type="reset">Limpar</button>
+    </form>
+
+
+    </form>
+
+
+
+    <script>
+
+
+
+
+      
+
+      // // Obtendo referência à tabela
+      // const tabela = document.getElementById("tabela-abastecimentos").getElementsByTagName('tbody')[0];
+
+      // // Obtendo referência ao formulário
+      // const form = document.getElementById("form-abastecimento");
+
+      // // Adicionando evento de "submit" ao formulário
+      // form.addEventListener("submit", function(event) {
+      //   event.preventDefault();
+
+      //   // Atualizando o objeto JSON com os dados do formulário
+      //   const dadosAbastecimento = {
+      //     data: document.getElementById("data").value,
+      //     tipoCombustivel: document.getElementById("combustivel").value,
+      //     valorLitro: document.getElementById("valor-litro").value,
+      //     valorTotal: document.getElementById("total").value
+      //   };
+
+      //   // Armazenando os dados no Local Storage
+      //   const storedAbastecimentos = JSON.parse(localStorage.getItem('abastecimentos')) || [];
+      //   storedAbastecimentos.push(dadosAbastecimento);
+      //   localStorage.setItem('abastecimentos', JSON.stringify(storedAbastecimentos));
+
+      //   // Criando nova linha na tabela e adicionando as colunas
+      //   const novaLinha = tabela.insertRow();
+      //   const colunaData = novaLinha.insertCell(0);
+      //   const colunaCombustivel = novaLinha.insertCell(1);
+      //   const colunaValorLitro = novaLinha.insertCell(2);
+      //   const colunaValorTotal = novaLinha.insertCell(3);
+
+      //   // Preenchendo as colunas com os valores do formulário
+      //   colunaData.innerHTML = dadosAbastecimento.data;
+      //   colunaCombustivel.innerHTML = dadosAbastecimento.tipoCombustivel;
+      //   colunaValorLitro.innerHTML = dadosAbastecimento.valorLitro;
+      //   colunaValorTotal.innerHTML = dadosAbastecimento.valorTotal;
+
+      //   // Limpar o formulário após o cadastro
+      //   form.reset();
+
+      //   // Exibindo mensagem de sucesso
+      //   alert("Abastecimento cadastrado com sucesso!");
+      // });
+
+      // // Carrega e exibe os abastecimentos do usuário logado
+      // function carregarAbastecimentos() {
+      //   const storedAbastecimentos = JSON.parse(localStorage.getItem('abastecimentos'));
+      // //   if (storedAbastecimentos) {
+      //     // Preenche a tabela de abastecimentos com os dados do Local Storage
+      //     storedAbastecimentos.forEach(abastecimento => {
+      //       const novaLinha = tabela.insertRow();
+      //       const colunaData = novaLinha.insertCell(0);
+      //       const colunaCombustivel = novaLinha.insertCell(1);
+      //       const colunaValorLitro = novaLinha.insertCell(2);
+      //       const colunaValorTotal = novaLinha.insertCell(3);
+
+      //       colunaData.innerHTML = abastecimento.data;
+      //       colunaCombustivel.innerHTML = abastecimento.tipoCombustivel;
+      //       colunaValorLitro.innerHTML = abastecimento.valorLitro;
+      //       colunaValorTotal.innerHTML = abastecimento.valorTotal;
+      //     });
+      //   }
+      // }
+
+      // // Chama a função para carregar os abastecimentos ao carregar a página
+      // carregarAbastecimentos();
+
+    </script>
+
+
+    <style>
+      .containe {
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      form label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+      }
+
+      form input[type="date"],
+      form input[type="number"],
+      form select {
+        padding: 0.5rem;
+        border-radius: 3px;
+        border: none;
+        margin-bottom: 0.6rem;
+        box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
+      }
+
+      form select {
+        appearance: none;
+        -webkit-appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+        background-position: right center;
+        background-repeat: no-repeat;
+        background-size: 1rem;
+        padding-right: 1.5rem;
+      }
+
+      form button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 0.5rem;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+
+      form button[type="reset"] {
+        background-color: #5636f4;
+
+      }
+
+
+
+      th,
+      td {
+        padding: 0.5rem;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      th {
+        background-color: #605e5e;
+        color: white;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      @media screen and (min-width: 640px) {
+        form {
+          display: flex;
+          flex-wrap: wrap;
+          width: 80%;
+          gap: 1rem;
+        }
+
+        form label {
+          flex-basis: 100%;
+          max-width: 100%;
+          width: 100%;
+        }
+
+        form input,
+        form select {
+          flex-basis: calc(90% - 0.5rem);
+          max-width: calc(90% - 0.5rem);
+        }
+
+        form button {
+          flex-basis: calc(50% - 0.5rem);
+          max-width: calc(50% - 0.5rem);
+        }
+      }
+    </style>
+
+
+</body>
+
+</html>
