@@ -6,6 +6,8 @@ import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
+import java.util.List;
+
 import org.json.JSONObject;
 
 import com.ti2cc.dao.PostoDAO;
@@ -86,5 +88,47 @@ public class PostoService {
         return resp;
 
     }
+
+    public String getAllPostos(Request request, Response response) {
+        List<Posto> postos = postoDAO.getAll();
+    
+        StringBuilder result = new StringBuilder("Lista de todos os postos:\n");
+        
+        for (Posto posto : postos) {
+            result.append("CNPJ: ").append(posto.getCPNJ()).append("\n");
+            result.append("Nome: ").append(posto.getNome()).append("\n");
+            result.append("Marca: ").append(posto.getMarca()).append("\n");
+            result.append("Latitude: ").append(posto.getLatitude()).append("\n");
+            result.append("Longitude: ").append(posto.getLongitude()).append("\n");
+            result.append("Preço Gasolina: ").append(posto.getPreco_gasolina()).append("\n");
+            result.append("Preço Álcool: ").append(posto.getPreco_alcool()).append("\n");
+            result.append("\n");
+        }
+    
+        return result.toString();
+    }
+
+    public String getByCNPJ(Request request, Response response) {
+        String cnpj = request.queryParams("cnpj");
+        Posto posto = postoDAO.getByCNPJ(cnpj);
+    
+        if (posto != null) {
+            StringBuilder result = new StringBuilder("Detalhes do Posto:\n");
+            result.append("CNPJ: ").append(posto.getCPNJ()).append("\n");
+            result.append("Nome: ").append(posto.getNome()).append("\n");
+            result.append("Marca: ").append(posto.getMarca()).append("\n");
+            result.append("Latitude: ").append(posto.getLatitude()).append("\n");
+            result.append("Longitude: ").append(posto.getLongitude()).append("\n");
+            result.append("Preço Gasolina: ").append(posto.getPreco_gasolina()).append("\n");
+            result.append("Preço Álcool: ").append(posto.getPreco_alcool()).append("\n");
+    
+            return result.toString();
+        } else {
+            response.status(500); 
+            return "Posto com CNPJ " + cnpj + " não encontrado.";
+        }
+    }
+    
+    
 
 }
