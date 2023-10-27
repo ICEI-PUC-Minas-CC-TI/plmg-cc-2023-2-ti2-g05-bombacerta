@@ -3,23 +3,37 @@ package com.ti2cc.models;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import org.json.JSONObject;
+
 public class Abastecimento {
     private int id;
 
-    private int id_posto;
+    private String id_posto; //cnpj
     private int id_usuario;
     private BigDecimal preco;
-    private String litros;
+    private double litros;
     private Tipo tipo;
     private LocalDate data; 
 
-    public Abastecimento(int id_posto, int id_usuario, BigDecimal preco, String litros, Tipo tipo, LocalDate data) {
+    public Abastecimento(String id_posto, int id_usuario, BigDecimal preco, double litros, Tipo tipo, LocalDate data) {
         this.id_posto = id_posto;
         this.id_usuario = id_usuario;
         this.preco = preco;
         this.litros = litros;
         this.tipo = tipo;
         this.data = data;
+    }
+
+    public JSONObject toJsonObject(){
+        JSONObject json = new JSONObject();
+        json.put("id", this.id);
+        json.put("id_posto", this.id_posto);
+        json.put("id_usuario", this.id_usuario);
+        json.put("preco", this.preco);
+        json.put("litros", this.litros);
+        json.put("tipo", this.tipo);
+        json.put("data", this.data);
+        return json;
     }
 
     public int getId() {
@@ -30,11 +44,11 @@ public class Abastecimento {
         this.id = id;
     }
 
-    public int getId_posto() {
+    public String getId_posto() {
         return id_posto;
     }
 
-    public void setId_posto(int id_posto) {
+    public void setId_posto(String id_posto) {
         this.id_posto = id_posto;
     }
 
@@ -54,11 +68,11 @@ public class Abastecimento {
         this.preco = preco;
     }
 
-    public String getLitros() {
+    public double getLitros() {
         return litros;
     }
 
-    public void setLitros(String litros) {
+    public void setLitros(double litros) {
         this.litros = litros;
     }
 

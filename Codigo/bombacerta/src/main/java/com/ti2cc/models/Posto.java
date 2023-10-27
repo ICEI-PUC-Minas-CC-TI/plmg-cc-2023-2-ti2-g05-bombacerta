@@ -2,6 +2,8 @@ package com.ti2cc.models;
 
 import java.math.BigDecimal;
 
+import org.json.JSONObject;
+
 public class Posto {
 
     private String CPNJ;
@@ -83,6 +85,18 @@ public class Posto {
 
     public void setPreco_alcool(BigDecimal preco_alcool) {
         Preco_alcool = preco_alcool;
+    }
+
+    public JSONObject toJsonObject(){
+        JSONObject obj = new JSONObject();
+        obj.put("cnpj", this.CPNJ);
+        obj.put("nome", this.nome);
+        obj.put("marca", this.marca);
+        obj.put("lat", this.latitude);
+        obj.put("lng", this.longitude);
+        obj.put("preco_gasolina", this.Preco_gasolina);
+        obj.put("preco_alcool", this.Preco_alcool);
+        return obj;
     }
 
 }

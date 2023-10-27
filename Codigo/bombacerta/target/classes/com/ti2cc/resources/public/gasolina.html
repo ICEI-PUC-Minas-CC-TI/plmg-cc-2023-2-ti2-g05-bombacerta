@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Postos</title>
+  <style>
+    .posto-card {
+      display: flex;
+      margin-bottom: 20px;
+      padding: 10px;
+      background-color: #f1f1f1;
+      border-radius: 5px;
+      justify-content: space-around;
+      width: 90%;
+      align-items: center;
+    }
+
+    .posto-card img {
+      width: 200px;
+      margin-right: 10px;
+      
+    }
+
+    .posto-card .posto-nome {
+      font-weight: bold;
+
+    }
+
+    .posto-card .posto-endereco {
+      margin-top: 5px;
+    }
+
+    .posto-card .posto-preco {
+      margin-left: auto;
+      font-weight: bold;
+      background-color: #eaeaea;
+      padding: 5px 10px;
+
+    }
+
+    .posto-card .atualizar-preco-btn {
+      margin-top: 3px;
+      margin-left: 100px;
+      /* Adiciona essa linha para alinhar à esquerda */
+    }
+
+    /* Media queries para ajustar o layout em diferentes tamanhos de tela */
+    @media (max-width: 768px) {
+      .posto-card {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+      }
+
+      .posto-card img {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+      }
+
+      .posto-card .atualizar-preco-btn {
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Preço dos postos</h1>
+
+  <div>
+    <div class="posto-lista">
+      <!-- Aqui vai a lista de postos -->
+    </div>
+  </div>
+  <script>
+
+
+    const url = "http://localhost:1111/postos";
+    var endereco = [];
+
+    fetch(url)
+      .then(response => response.text())
+      .then(data => {
+        data = JSON.parse(data);
+        console.log(data);
+        const divPosto = document.querySelector('.posto-lista');
+        divPosto.innerHTML = "";
+
+        var promises = [];
+
+        for (var i = 0; i < data.length; i++) {
+          const urlMaps = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + data[i].lat + "," + data[i].lng + "&key=AIzaSyDB-hseTvhV9kWK7vBW8xzqA4Trq1TIzgk";
+
+          promises.push(
+            fetch(urlMaps)
+              .then(response => response.json())
+              .then(data => {
+                return data.results[0].formatted_address;
+              })
+          );
+        }
+
+        Promise.all(promises)
+          .then(enderecos => {
+            for (var i = 0; i < data.length; i++) {
+              var div = "<div class='posto-card'>";
+              div += "<div>";
+              div += "<span class='posto-nome'>" + data[i].nome + "</span><br>";
+              div += "<span class='posto-endereco'>" + enderecos[i] + "</span>";
+              div += "</div><div class='precos'>";
+              div += "<p>Preço gasolina:</p>";
+              div += "<span class='posto-preco-gasolina' id='preco" + data[i].id + "'>R$ " + data[i].preco_gasolina + "</span>";
+              div += "<br>";
+              div += "<p>Preço álcool:</p>";
+              div += "<span class='posto-preco-alcool' id='preco" + data[i].id + "'>R$ " + data[i].preco_alcool + "</span>";
+              div += "<br></div>";
+              div += "</div>";
+              divPosto.innerHTML += div;
+            }
+          });
+
+      });
+
+  </script>
+
+
+</body>
+
+</html>

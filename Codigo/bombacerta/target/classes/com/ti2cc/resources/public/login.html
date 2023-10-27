@@ -16,7 +16,7 @@
   <div class="containe">
   <h1>Cadastro de Abastecimento</h1>
 
-  <form id="form-abastecimento">
+  <form id="form-abastecimento" action="abastecimento/cadastro" method="post">
 
     <label for="data">Data:</label>
     <input type="date" id="data" name="data" required><br><br>
@@ -34,12 +34,18 @@
     <label for="quantidade">Valor total gasto:</label>
     <input type="number" id="total" name="total" step="0.01" min="0.01" required><br><br>
 
+    <input type="text" id="userid"name="userid" value="" style="visibility: hidden;">
+
+    
+
     <button type="submit">Cadastrar</button>
       <button type="reset">Limpar</button>
     </form>
     
-    
-  </form>
+    <script>
+      var useridSetted = localStorage.getItem('logado');
+      document.getElementById("userid").value = useridSetted;
+    </script>
 
   <h2>Abastecimentos cadastrados</h2>
 
@@ -54,7 +60,6 @@
       <tr>
         <th>Data</th>
         <th>Combustível</th>
-        <th>Valor do litro</th>
         <th>Total</th>
       </tr>
     </thead>
@@ -63,72 +68,28 @@
   </table>
   
   <script>
-// // Obtendo referência à tabela
-// const tabela = document.getElementById("tabela-abastecimentos").getElementsByTagName('tbody')[0];
+   
+      const userid = localStorage.getItem('logado');
+      const url = "http://localhost:1111/usuario/abastecimentos?userid=" + userid;
+      fetch(url)
+      .then(response => response.text())
+        .then(data => {
+          data = JSON.parse(data);
+          console.log(data);
+          var tabela = document.getElementById("tabela-abastecimentos");
+          var tbody = tabela.getElementsByTagName("tbody")[0];
+          tbody.innerHTML = "";
+          for (i = 0; i < data.length; i++) {
+            var tr = "<tr>";
+            tr += "<td>" + data[i].data + "</td>";
+            tr += "<td>" + data[i].tipo + "</td>";
+            tr += "<td>" + data[i].preco + "</td>";
+            tr += "</tr>";
+            tbody.innerHTML += tr;
+          }
+        });
 
-// // Obtendo referência ao formulário
-// const form = document.getElementById("form-abastecimento");
-
-// // Adicionando evento de "submit" ao formulário
-// form.addEventListener("submit", function(event) {
-//   event.preventDefault();
-
-//   // Atualizando o objeto JSON com os dados do formulário
-//   const dadosAbastecimento = {
-//     data: document.getElementById("data").value,
-//     tipoCombustivel: document.getElementById("combustivel").value,
-//     valorLitro: document.getElementById("valor-litro").value,
-//     valorTotal: document.getElementById("total").value
-//   };
-
-//   // Armazenando os dados no Local Storage
-//   const storedAbastecimentos = JSON.parse(localStorage.getItem('abastecimentos')) || [];
-//   storedAbastecimentos.push(dadosAbastecimento);
-//   localStorage.setItem('abastecimentos', JSON.stringify(storedAbastecimentos));
-
-//   // Criando nova linha na tabela e adicionando as colunas
-//   const novaLinha = tabela.insertRow();
-//   const colunaData = novaLinha.insertCell(0);
-//   const colunaCombustivel = novaLinha.insertCell(1);
-//   const colunaValorLitro = novaLinha.insertCell(2);
-//   const colunaValorTotal = novaLinha.insertCell(3);
-
-//   // Preenchendo as colunas com os valores do formulário
-//   colunaData.innerHTML = dadosAbastecimento.data;
-//   colunaCombustivel.innerHTML = dadosAbastecimento.tipoCombustivel;
-//   colunaValorLitro.innerHTML = dadosAbastecimento.valorLitro;
-//   colunaValorTotal.innerHTML = dadosAbastecimento.valorTotal;
-
-//   // Limpar o formulário após o cadastro
-//   form.reset();
-
-//   // Exibindo mensagem de sucesso
-//   alert("Abastecimento cadastrado com sucesso!");
-// });
-
-// // Carrega e exibe os abastecimentos do usuário logado
-// function carregarAbastecimentos() {
-//   const storedAbastecimentos = JSON.parse(localStorage.getItem('abastecimentos'));
-// //   if (storedAbastecimentos) {
-//     // Preenche a tabela de abastecimentos com os dados do Local Storage
-//     storedAbastecimentos.forEach(abastecimento => {
-//       const novaLinha = tabela.insertRow();
-//       const colunaData = novaLinha.insertCell(0);
-//       const colunaCombustivel = novaLinha.insertCell(1);
-//       const colunaValorLitro = novaLinha.insertCell(2);
-//       const colunaValorTotal = novaLinha.insertCell(3);
-
-//       colunaData.innerHTML = abastecimento.data;
-//       colunaCombustivel.innerHTML = abastecimento.tipoCombustivel;
-//       colunaValorLitro.innerHTML = abastecimento.valorLitro;
-//       colunaValorTotal.innerHTML = abastecimento.valorTotal;
-//     });
-//   }
-// }
-
-// // Chama a função para carregar os abastecimentos ao carregar a página
-// carregarAbastecimentos();
-
+    
   </script>
   
 

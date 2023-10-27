@@ -8,6 +8,7 @@ import java.net.URI;
 import java.net.URL;
 import java.util.List;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.ti2cc.dao.PostoDAO;
@@ -19,6 +20,11 @@ import spark.Response;
 
 public class PostoService {
 
+    /**
+     * Faz uma chamada para uma API através de uma URL e retorna a resposta em formato de String.
+     * @param apiUrl a URL da API que será chamada
+     * @return a resposta da API em formato de String, ou "erro" caso ocorra algum erro na chamada
+     */
     private static String callApi(String apiUrl) {
         try {
             URI uri = new URI(apiUrl);
@@ -91,21 +97,17 @@ public class PostoService {
 
     public String getAllPostos(Request request, Response response) {
         List<Posto> postos = postoDAO.getAll();
-    
-        StringBuilder result = new StringBuilder("Lista de todos os postos:\n");
-        
+
+        JSONArray jsonArray = new JSONArray();
+
         for (Posto posto : postos) {
-            result.append("CNPJ: ").append(posto.getCPNJ()).append("\n");
-            result.append("Nome: ").append(posto.getNome()).append("\n");
-            result.append("Marca: ").append(posto.getMarca()).append("\n");
-            result.append("Latitude: ").append(posto.getLatitude()).append("\n");
-            result.append("Longitude: ").append(posto.getLongitude()).append("\n");
-            result.append("Preço Gasolina: ").append(posto.getPreco_gasolina()).append("\n");
-            result.append("Preço Álcool: ").append(posto.getPreco_alcool()).append("\n");
-            result.append("\n");
+            JSONObject jsonObject = posto.toJsonObject();
+            jsonArray.put(jsonObject);
         }
-    
-        return result.toString();
+
+        String jsonString = jsonArray.toString();
+
+        return jsonString;
     }
 
     public String getByCNPJ(Request request, Response response) {
@@ -113,16 +115,7 @@ public class PostoService {
         Posto posto = postoDAO.getByCNPJ(cnpj);
     
         if (posto != null) {
-            StringBuilder result = new StringBuilder("Detalhes do Posto:\n");
-            result.append("CNPJ: ").append(posto.getCPNJ()).append("\n");
-            result.append("Nome: ").append(posto.getNome()).append("\n");
-            result.append("Marca: ").append(posto.getMarca()).append("\n");
-            result.append("Latitude: ").append(posto.getLatitude()).append("\n");
-            result.append("Longitude: ").append(posto.getLongitude()).append("\n");
-            result.append("Preço Gasolina: ").append(posto.getPreco_gasolina()).append("\n");
-            result.append("Preço Álcool: ").append(posto.getPreco_alcool()).append("\n");
-    
-            return result.toString();
+           return posto.toJsonObject().toString();
         } else {
             response.status(500); 
             return "Posto com CNPJ " + cnpj + " não encontrado.";
