@@ -90,7 +90,7 @@ public class App {
             return postoService.getAllPostos(request, response);
         });
 
-        get("/posto/ver", (request, response) -> {
+        get("/postos/ver", (request, response) -> {
             return App.getPage("Codigo\\bombacerta\\src\\main\\java\\com\\ti2cc\\resources\\public\\gasolina.html");
         });
     }

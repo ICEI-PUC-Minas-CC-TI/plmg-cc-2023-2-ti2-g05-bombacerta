@@ -12,50 +12,52 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body style="background-color: #97c899;">
   <header>
 
   </header>
 
 
   <div class="containe">
-    <h1>Adicione um novo posto</h1>
-
-    <form id="form-posto" action="cadastro" method="post">
-
-      <label for="cnpj">CNPJ:</label>
-      <input type="text" id="cnpj" name="cnpj" required placeholder="Sem pontucação! Exemplo: '11712569000104'"><br><br>
-
-      <label for="cnpj">Nome:</label>
-      <input type="text" id="nome" name="nome" required><br><br>
+    <div class="cadastro-box">
 
 
-      <label for="marca">Marca:</label>
-      <select id="marca" name="marca" required>
-        <option value="">Selecione a marca do posto</option>
-        <option value="Petrobras" name="gasolina">Petrobras</option>
-        <option value="Shell">Shell</option>
-        <option value="Ipiranga">Ipiranga</option>
-      </select><br><br>
+      <h1>Adicione um novo posto</h1>
+
+      <form id="form-posto" action="cadastro" method="post">
+
+        <label for="cnpj">CNPJ:</label>
+        <input type="text" id="cnpj" name="cnpj" required
+          placeholder="Sem pontucação! Exemplo: '11712569000104'"><br><br>
+
+        <label for="cnpj">Nome:</label>
+        <input type="text" id="nome" name="nome" required><br><br>
 
 
-      <label for="preco_gasolina">Valor da gasolina:</label>
-      <input type="number" id="preco_gasolina" name="preco_gasolina" step="0.01" min="0.01" required><br><br>
-
-      <label for="preco_alcool">Valor do álcool:</label>
-      <input type="number" id="preco_alcool" name="preco_alcool" step="0.01" min="0.01" required><br><br>
-
-      <label for="endereco">Endereço: (Copie do google maps) </label>
-      <input id="endereco" type="text" name="endereco" required>
-
-
-      <button id="btn-submit" type="submit">Cadastrar</button>
-      <button type="reset">Limpar</button>
-    </form>
+        <label for="marca">Marca:</label>
+        <select id="marca" name="marca" required>
+          <option value="">Selecione a marca do posto</option>
+          <option value="Petrobras" name="gasolina">Petrobras</option>
+          <option value="Shell">Shell</option>
+          <option value="Ipiranga">Ipiranga</option>
+        </select><br><br>
 
 
-    </form>
+        <label for="preco_gasolina">Valor da gasolina:</label>
+        <input type="number" id="preco_gasolina" name="preco_gasolina" step="0.01" min="0.01" required><br><br>
 
+        <label for="preco_alcool">Valor do álcool:</label>
+        <input type="number" id="preco_alcool" name="preco_alcool" step="0.01" min="0.01" required><br><br>
+
+        <label for="endereco">Endereço: (Copie do google maps) </label>
+        <input id="endereco" type="text" name="endereco" required>
+
+
+        <button id="btn-submit" type="submit">Cadastrar</button>
+        <button type="reset">Limpar</button>
+      </form>
+
+    </div>
 
 
     <script>
@@ -63,7 +65,7 @@
 
 
 
-      
+
 
       // // Obtendo referência à tabela
       // const tabela = document.getElementById("tabela-abastecimentos").getElementsByTagName('tbody')[0];
@@ -135,9 +137,27 @@
 
 
     <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
       .containe {
-        max-width: 500px;
+        max-width: 600px;
+        /* Ajuste o valor conforme necessário */
         margin: 0 auto;
+      }
+
+      .cadastro-box {
+        background-color: white;
+        border-radius: 5px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+        width: 100%;
+        /* 100% de largura da caixa */
+        box-sizing: border-box;
+        /* Inclui as bordas e o preenchimento no cálculo da largura */
       }
 
       h1 {
@@ -230,7 +250,6 @@
         }
       }
     </style>
-
 
 </body>
 

@@ -103,6 +103,16 @@
     </section>
     <br>
 
+    <div class="chatbot">
+      <iframe src="https://www.chatbase.co/chatbot-iframe/700r3b9PR0WAPECEeMrqq" width="30%"
+        style="height: 30%; min-height: 700px" frameborder="0"></iframe>
+
+        <div class="chat-text">
+          <h3>Precisa de algo?</h3>
+          <p>Nosso chatbot está aqui para te ajudar!</p>
+          <p class="p2">Pergunte sobre alguma funcionalidade do site e descubra como ela foi feita e como você pode usá-la ao seu favor.</p>
+        </div>
+    </div>
 
     <section class="postos-section">
       <h5>Postos em destaque</h5>
@@ -345,6 +355,28 @@
     }
 
 
+    .chatbot {
+      padding: 20px;
+      border-radius: 25px;
+      margin: 0 30px 0 30px;
+      background-color: #f1f1f1;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+
+    .chat-text p {
+      font-size: 25px;
+    }
+
+    .chat-text p.p2 {
+      font-size: 20px;
+      width: 400px;
+    }
+
+    .chat-text h3 {
+      font-size: 36px;
+    }
 
 
     /* Postos */
@@ -389,6 +421,7 @@
   </style>
 
   <script>
+    const sparkUrl = "http://localhost:1111/";
 
 
     function initMap() {
@@ -412,7 +445,7 @@
 
     var arrayPostos = [];
     function getPostosData(map) {
-      const url = "http://localhost:1111/postos";
+      const url = sparkUrl + "postos";;
       fetch(url)
         .then(response => response.text())
         .then(data => {
@@ -446,8 +479,8 @@
         });
     }
 
-    
-   
+
+
 
     function addPostosNaPagina() {
       const container = document.querySelector(".posto-container");
@@ -467,7 +500,7 @@
       });
     }
 
-   
+
 
 
 

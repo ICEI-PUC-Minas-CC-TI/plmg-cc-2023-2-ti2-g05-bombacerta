@@ -3,23 +3,25 @@ package com.ti2cc.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import io.github.cdimascio.dotenv.Dotenv;
 
 public class DAO {
     
     protected Connection conexao;
+	Dotenv dotenv = Dotenv.load();
 	
 	public DAO() {
 		conexao = null;
 	}
 	
 	public boolean conectar() {
-		String driverName = "org.postgresql.Driver";                    
-		String serverName = "bombacerta.postgres.database.azure.com";
-		String mydatabase = "bombacerta";
-		int porta = 5432;
-		String url = "jdbc:postgresql://" + serverName + ":" + porta +"/" + mydatabase;
-		String username = "adm@bombacerta";
-		String password = "Bombacerta#";
+		String driverName = "org.postgresql.Driver";      
+
+		String url = dotenv.get("DB_URL");
+		String username = dotenv.get("DB_ADMIN");
+		String password = dotenv.get("DB_PASS");
+
+
 		boolean status = false;
 
 		try {

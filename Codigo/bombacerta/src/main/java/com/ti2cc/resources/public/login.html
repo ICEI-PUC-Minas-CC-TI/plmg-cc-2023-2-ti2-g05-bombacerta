@@ -1,78 +1,85 @@
 <html>
+
 <head>
   <meta charset="UTF-8">
   <title>Página do Usuário</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+    crossorigin="anonymous"></script>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <header>
-        
-    </header>
+
+<body style="background-color: #97c899;">
+  <header>
+
+  </header>
 
 
   <div class="containe">
-  <h1>Cadastro de Abastecimento</h1>
+    <div class="cadastro-box">
+      <h1>Cadastro de Abastecimento</h1>
 
-  <form id="form-abastecimento" action="abastecimento/cadastro" method="post">
+      <form id="form-abastecimento" action="abastecimento/cadastro" method="post">
 
-    <label for="data">Data:</label>
-    <input type="date" id="data" name="data" required><br><br>
+        <label for="data">Data:</label>
+        <input type="date" id="data" name="data" required><br><br>
 
-    <label for="combustivel">Tipo de combustível:</label>
-    <select id="combustivel" name="combustivel" required>
-      <option value="">Selecione o combustível</option>
-      <option value="Gasolina" name="gasolina">Gasolina</option>
-      <option value="alcool">Álcool</option>
-    </select><br><br>
+        <label for="combustivel">Tipo de combustível:</label>
+        <select id="combustivel" name="combustivel" required>
+          <option value="">Selecione o combustível</option>
+          <option value="Gasolina" name="gasolina">Gasolina</option>
+          <option value="alcool">Álcool</option>
+        </select><br><br>
 
-    <label for="valor-unitario">Valor do litro:</label>
-    <input type="number" id="valor-litro" name="valor-litro" step="0.01" min="0.01" required><br><br>
+        <label for="valor-unitario">Valor do litro:</label>
+        <input type="number" id="valor-litro" name="valor-litro" step="0.01" min="0.01" required><br><br>
 
-    <label for="quantidade">Valor total gasto:</label>
-    <input type="number" id="total" name="total" step="0.01" min="0.01" required><br><br>
+        <label for="quantidade">Valor total gasto:</label>
+        <input type="number" id="total" name="total" step="0.01" min="0.01" required><br><br>
 
-    <input type="text" id="userid"name="userid" value="" style="visibility: hidden;">
+        <input type="text" id="userid" name="userid" value="" style="visibility: hidden;">
 
-    
 
-    <button type="submit">Cadastrar</button>
-      <button type="reset">Limpar</button>
-    </form>
-    
+
+        <button type="submit">Cadastrar</button>
+        <button type="reset">Limpar</button>
+      </form>
+
+      <script>
+        var useridSetted = localStorage.getItem('logado');
+        document.getElementById("userid").value = useridSetted;
+      </script>
+
+      <h2>Abastecimentos cadastrados</h2>
+
+      <table id="tabela-abastecimentos" cellspacing="10" cellpadding="5">
+        <colgroup>
+          <col width="25%">
+          <col width="25%">
+          <col width="25%">
+          <col width="25%">
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Combustível</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+
     <script>
-      var useridSetted = localStorage.getItem('logado');
-      document.getElementById("userid").value = useridSetted;
-    </script>
 
-  <h2>Abastecimentos cadastrados</h2>
-
-  <table id="tabela-abastecimentos" cellspacing="10" cellpadding="5">
-    <colgroup>
-      <col width="25%">
-      <col width="25%">
-      <col width="25%">
-      <col width="25%">
-    </colgroup>
-    <thead>
-      <tr>
-        <th>Data</th>
-        <th>Combustível</th>
-        <th>Total</th>
-      </tr>
-    </thead>
-    <tbody>
-    </tbody>
-  </table>
-  
-  <script>
-   
       const userid = localStorage.getItem('logado');
       const url = "http://localhost:1111/usuario/abastecimentos?userid=" + userid;
       fetch(url)
-      .then(response => response.text())
+        .then(response => response.text())
         .then(data => {
           data = JSON.parse(data);
           console.log(data);
@@ -89,113 +96,129 @@
           }
         });
 
-    
-  </script>
-  
 
-  <style>
-    
+    </script>
 
-    
-    .containe {
-    max-width: 500px;
-    margin: 0 auto;
-  }
 
-h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  form label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-  }
-  
-  form input[type="date"],
-  form input[type="number"],
-  form select {
-    padding: 0.5rem;
-    border-radius: 3px;
-    border: none;
-    margin-bottom: 0.6rem;
-    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
-  }
-  
-  form select {
-    appearance: none;
-    -webkit-appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
-    background-position: right center;
-    background-repeat: no-repeat;
-    background-size: 1rem;
-    padding-right: 1.5rem;
-  }
-  
-  form button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 0.5rem;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-  
-  form button[type="reset"] {
-    background-color: #5636f4;
-    
-  }
-  
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-top: 2rem;
-  }
-  
-  th, td {
-    padding: 0.5rem;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  th {
-    background-color: #605e5e;
-    color: white;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  
-  @media screen and (min-width: 640px) {
-    form {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-  
-    form label {
-      flex-basis: 100%;
-      max-width: 100%;
-    }
-  
-    form input[type="date"],
-    form input[type="number"],
-    form select {
-      flex-basis: calc(50% - 0.5rem);
-      max-width: calc(50% - 0.5rem);
-    }
-  
-    form button {
-      flex-basis: calc(50% - 0.5rem);
-      max-width: calc(50% - 0.5rem);
-    }
-  }
-  
-  </style>
-  
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      .containe {
+        max-width: 600px;
+        /* Ajuste o valor conforme necessário */
+        margin: 0 auto;
+      }
+
+      .cadastro-box {
+        background-color: white;
+        border-radius: 5px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+        width: 100%;
+        /* 100% de largura da caixa */
+        box-sizing: border-box;
+        /* Inclui as bordas e o preenchimento no cálculo da largura */
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      form label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+      }
+
+      form input[type="date"],
+      form input[type="number"],
+      form select {
+        padding: 0.5rem;
+        border-radius: 3px;
+        border: none;
+        margin-bottom: 0.6rem;
+        box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
+      }
+
+      form select {
+        appearance: none;
+        -webkit-appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+        background-position: right center;
+        background-repeat: no-repeat;
+        background-size: 1rem;
+        padding-right: 1.5rem;
+      }
+
+      form button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 0.5rem;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+
+      form button[type="reset"] {
+        background-color: #5636f4;
+
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 2rem;
+      }
+
+      th,
+      td {
+        padding: 0.5rem;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      th {
+        background-color: #605e5e;
+        color: white;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      @media screen and (min-width: 640px) {
+        form {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1rem;
+        }
+
+        form label {
+          flex-basis: 100%;
+          max-width: 100%;
+        }
+
+        form input[type="date"],
+        form input[type="number"],
+        form select {
+          flex-basis: calc(50% - 0.5rem);
+          max-width: calc(50% - 0.5rem);
+        }
+
+        form button {
+          flex-basis: calc(50% - 0.5rem);
+          max-width: calc(50% - 0.5rem);
+        }
+      }
+    </style>
+
 
 </body>
+
 </html>
