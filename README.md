@@ -14,7 +14,8 @@ Além disso, a funcionalidade de cadastro e histórico de abastecimento oferece 
 ## Professores responsáveis
 
 * Max
-* [Nome completo do professor 2]
+* Luciana
+* Josiane
 
 ## Instruções de utilização
 
