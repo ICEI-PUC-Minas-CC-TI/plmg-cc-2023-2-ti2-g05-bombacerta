@@ -1,6 +1,6 @@
 cff-version: 1.0.1
 message: Please cite this software using these metadata.
-title: 
+title: Bomba Certa
 authors:
   - family-names:Souza Cancado
     given-names:Ana Fernanda 
@@ -24,7 +24,6 @@ authors:
     given-names:Josiane
 keywords:
   - Posto de combustível
-  - Bomba Certa
   - Financeiro
   - Chatbot
   - Preço de combustíveis
