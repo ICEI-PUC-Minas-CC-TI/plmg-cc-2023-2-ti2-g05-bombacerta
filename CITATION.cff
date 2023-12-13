@@ -2,30 +2,36 @@ cff-version: 1.0.1
 message: Please cite this software using these metadata.
 title: 
 authors:
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names:
+  - family-names:Souza Cancado
+    given-names:Ana Fernanda 
+  - family-names:Pinheiro Roque 
+    given-names:Julia
+  - family-names:Rangel Gontijo 
+    given-names:Gabriel
+  - family-names:Milione Assis
+    given-names:Luiz Gabriel 
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names:do Val Machado 
+    given-names:Max
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names:Freitas Diniz 
+    given-names:Luciana Mara
+ - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names:da Costa Vieira Rezende 
+    given-names:Josiane
 keywords:
-  - 
-  - 
+  - Posto de combustível
+  - Bomba Certa
+  - Financeiro
+  - Chatbot
+  - Preço de combustíveis
+  - Gasolina
+  - Alcool
+
 repository-code: 
 license: CC-BY-4.0
 version: 1.0.0
-date-released: 2022-07-14
+date-released: 2023-12-12
