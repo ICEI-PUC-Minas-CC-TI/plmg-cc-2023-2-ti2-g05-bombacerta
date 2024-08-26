@@ -2,26 +2,26 @@ cff-version: 1.0.1
 message: Please cite this software using these metadata.
 title: Bomba Certa
 authors:
-  - family-names:Souza Cancado
-    given-names:Ana Fernanda 
-  - family-names:Pinheiro Roque 
-    given-names:Julia
-  - family-names:Rangel Gontijo 
-    given-names:Gabriel
-  - family-names:Milione Assis
-    given-names:Luiz Gabriel 
+  - family-names: Souza Cancado
+    given-names: Ana Fernanda 
+  - family-names: Pinheiro Roque 
+    given-names: Julia
+  - family-names: Rangel Gontijo 
+    given-names: Gabriel
+  - family-names: Milione Assis
+    given-names: Luiz Gabriel 
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names:do Val Machado 
-    given-names:Max
+    family-names: do Val Machado 
+    given-names: Max
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names:Freitas Diniz 
-    given-names:Luciana Mara
+    family-names: Freitas Diniz 
+    given-names: Luciana Mara
  - name-suffix: Professor
     affiliation: PUC Minas
-    family-names:da Costa Vieira Rezende 
-    given-names:Josiane
+    family-names: da Costa Vieira Rezende 
+    given-names: Josiane
 keywords:
   - Posto de combustível
   - Financeiro
